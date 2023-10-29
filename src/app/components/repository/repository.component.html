@@ -1,0 +1,41 @@
+
+<mat-card  class="margin-20">
+  <div layout="column">
+  <div  class="float-left">
+    <img mat-card-lg-image     
+    [src]="repo?.owner?.avatar_url"
+    [title]="repo?.owner?.login" />
+  </div>
+  <div  class="pd-5">
+  <mat-card-header >   
+    <mat-card-title-group> 
+        <a class="cursor-pointer">
+          <mat-card-title  (click)="openDialog()">{{ repo?.name }}
+        </mat-card-title>
+        </a>
+        <app-star-rating  
+        [isDisabled] ="true"
+        [rating]="rating"  
+        [starCount]="starCount" 
+        [color]="starColor"        
+       >
+  </app-star-rating>
+
+      </mat-card-title-group>   
+  </mat-card-header>  
+  <mat-card-content><p>{{ repo?.description }}</p></mat-card-content>
+  <mat-card-footer>
+    <mat-card-actions >   
+      <div >
+      <button  color="primary" mat-raised-button  style="cursor:default;"> 
+        stars: {{ repo?.stargazers_count }}
+      </button>
+      <button mat-raised-button color="primary"  style="margin: 5px;cursor:default;" >issues: {{ repo?.open_issues }}</button>
+      </div>     
+      <mat-card-content style="padding: 10px;">Submitted {{ repo?.created_at.toLocaleString() | timeAgo }} by {{ repo?.owner?.login }}
+        </mat-card-content>    
+   </mat-card-actions>
+    </mat-card-footer>
+  </div>
+</div>
+</mat-card>

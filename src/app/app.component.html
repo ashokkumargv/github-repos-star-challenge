@@ -1,1 +1,26 @@
-<div></div>
+
+<!-- The body of our app -->
+<div  infinite-scroll
+  [infiniteScrollDistance]='2'
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()"
+  [scrollWindow] ="false"
+  style="height: 100vh; overflow-y: scroll"
+  > 
+<mat-toolbar color="primary">
+  <span>{{title}}</span> 
+</mat-toolbar>
+ <div class="main-body"> 
+  <span *ngIf = "isFirstLoad && loading">
+    <mat-spinner diameter="40"></mat-spinner>
+    <span class="initialSpinner" >Load github repos...</span>
+  </span>
+  <!-- repository component -->
+  <app-repository *ngFor="let repo of repos" [repo]="repo"></app-repository>
+
+  <span *ngIf = "loading && !isFirstLoad" >
+    <mat-spinner diameter="40"></mat-spinner>
+    <span class = "scrollSpinner">Load more github repos...</span>
+  </span>
+</div>
+</div>

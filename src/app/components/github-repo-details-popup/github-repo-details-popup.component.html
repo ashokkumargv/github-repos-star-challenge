@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>Repo Details</h1>
+<div mat-dialog-content>
+     <mat-card  >
+      
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input [readonly]="true" matInput  [value]="data.name">
+        
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <label>{{data.description}}</label>
+            <input [readonly]="true" [hidden]="true" matInput  [value]="data.description">
+        
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Number of stars</mat-label>
+            <input [readonly]="true" matInput  [value]="data.stargazers_count">            
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Number of Issues</mat-label>
+            
+            <input [readonly]="true" matInput  [value]="data.open_issues">  
+            
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>User name </mat-label>
+        
+            <img mat-card-lg-image  matCardAvatar   
+    [src]="data.owner?.avatar_url"
+    [title]="data?.owner?.login"  />
+            <input [readonly]="true" matInput  [value]="data.owner?.login">  
+          
+          </mat-form-field>
+          <app-star-rating  
+                [rating]="rating"  
+                [starCount]="starCount" 
+                [color]="starColor"
+                (ratingUpdated)="onRatingChanged($event)">
+          </app-star-rating>
+
+    </mat-card>
+
+
+</div>
+<div mat-dialog-actions >
+  <button mat-raised-button color="primary" [mat-dialog-close]="rating" cdkFocusInitial>Ok</button>
+</div>
